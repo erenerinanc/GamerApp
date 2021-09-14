@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailsBusinessLogic: AnyObject {
-    func fetchGameDetails(request: Details.Case.Request)
+    func fetchGameDetails(request: Details.Fetch.Request)
 }
 
 protocol DetailsDataStore: AnyObject {
@@ -21,7 +21,7 @@ final class DetailsInteractor: DetailsBusinessLogic, DetailsDataStore {
     var worker: DetailsWorkingLogic = DetailsWorker()
     var gameDetail: GameResponse?
     
-    func fetchGameDetails(request: Details.Case.Request) {
+    func fetchGameDetails(request: Details.Fetch.Request) {
         //2
         
     }

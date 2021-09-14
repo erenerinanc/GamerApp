@@ -10,7 +10,7 @@ import Foundation
 // swiftlint:disable nesting
 enum Details {
     
-    enum Case {
+    enum Fetch {
         
         struct Request {
             var params: [Int:String]
@@ -21,7 +21,7 @@ enum Details {
         }
         
         struct ViewModel {
-            var game: Details.Case.ViewModel.GameDetail
+            var game: Details.Fetch.ViewModel.GameDetail
             
             struct GameDetail {
                 var id: Int

@@ -9,14 +9,14 @@ import UIKit
 import SnapKit
 
 protocol DetailsDisplayLogic: AnyObject {
-    func displayGameDetails(for viewModel: Details.Case.ViewModel)
+    func displayGameDetails(for viewModel: Details.Fetch.ViewModel)
 }
 
 final class DetailsViewController: UIViewController {
     
     var interactor: DetailsBusinessLogic?
     var router: (DetailsRoutingLogic & DetailsDataPassing)?
-    var viewModel: Details.Case.ViewModel?
+    var viewModel: Details.Fetch.ViewModel?
     
     var imageView = UIImageView()
     var descriptionLabel = UILabel()
@@ -74,7 +74,7 @@ final class DetailsViewController: UIViewController {
 }
 
 extension DetailsViewController: DetailsDisplayLogic {
-    func displayGameDetails(for viewModel: Details.Case.ViewModel) {
+    func displayGameDetails(for viewModel: Details.Fetch.ViewModel) {
         self.viewModel = viewModel
     }
 }

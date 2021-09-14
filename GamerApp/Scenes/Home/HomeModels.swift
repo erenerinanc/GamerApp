@@ -10,7 +10,7 @@ import Foundation
 // swiftlint:disable nesting
 enum Home {
     
-    enum Case {
+    enum Fetch {
         
         struct Request {
             let path: String
@@ -22,13 +22,20 @@ enum Home {
         }
         
         struct ViewModel {
-            var gamesList: [Home.Case.ViewModel.Game]
+            var gamesList: [Home.Fetch.ViewModel.Game]
+            var carouselGames: [Home.Fetch.ViewModel.Game] {
+                Array(gamesList[0..<3])
+            }
+            
+            var tableGames: [Home.Fetch.ViewModel.Game] {
+                Array(gamesList[3...])
+            }
             
             struct Game {
                 var name: String
                 var releasedDate: String
                 var rating: Double
-                var imageURL: String
+                var imageURL: URL
             }
         }
         

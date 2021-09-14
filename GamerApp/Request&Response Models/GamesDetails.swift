@@ -12,7 +12,7 @@ struct GameResponse: Codable {
     let id: Int?
     let slug, name, released: String?
     let tba: Bool?
-    let backgroundImage: String?
+    let backgroundImage: URL?
     let rating: Double?
     let ratingTop: Int?
     let ratings: [Rating]?

@@ -8,11 +8,11 @@
 import Foundation
 
 protocol DetailsWorkingLogic: AnyObject {
-    func getGameDetails(request: Details.Case.Request,_ completion: @escaping (Result<GameResponse,Error>) -> Void)
+    func getGameDetails(request: Details.Fetch.Request,_ completion: @escaping (Result<GameResponse,Error>) -> Void)
 }
 
 final class DetailsWorker: DetailsWorkingLogic {
-    func getGameDetails(request: Details.Case.Request, _ completion: @escaping (Result<GameResponse, Error>) -> Void) {
+    func getGameDetails(request: Details.Fetch.Request, _ completion: @escaping (Result<GameResponse, Error>) -> Void) {
         
     }
 }

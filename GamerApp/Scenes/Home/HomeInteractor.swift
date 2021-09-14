@@ -8,7 +8,7 @@
 import Foundation
 
 protocol HomeBusinessLogic: AnyObject {
-    func fetchGameslist(request: Home.Case.Request)
+    func fetchGameslist(request: Home.Fetch.Request)
 }
 
 protocol HomeDataStore: AnyObject {
@@ -26,13 +26,13 @@ final class HomeInteractor: HomeBusinessLogic, HomeDataStore {
 
     var gamesList: [GameResponse] = []
     
-    func fetchGameslist(request: Home.Case.Request) {
+    func fetchGameslist(request: Home.Fetch.Request) {
         //2
         worker.getGamesLists(request: request) { result in
             switch result {
             case .success(let response):
                 guard let gamesList = response.results else { return }
-                self.presenter?.presentGames(response: Home.Case.Response(gamesList: gamesList))
+                self.presenter?.presentGames(response: Home.Fetch.Response(gamesList: gamesList))
             case .failure(let error):
                 print("Error is:", error)
             }
