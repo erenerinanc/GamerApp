@@ -30,10 +30,13 @@ class CarouselCell: UICollectionViewCell {
         addSubview(nameLabel)
         addSubview(descriptionLabel)
         
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = CGFloat(20)
         imageView.clipsToBounds = true
         nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        nameLabel.textColor = .white
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        descriptionLabel.textColor = Colors.secondaryLabel
         
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview()

@@ -9,6 +9,10 @@ extension APIRequest {
     static func getGames() -> APIRequest{
         return APIRequest(path: "/games", parameters: [:])
     }
+    
+    static func searchGames(by query: String) -> APIRequest {
+        return APIRequest(path: "/games", parameters: ["search": query])
+    }
 }
 
 var placeHolderImageURL: URL = URL(string: "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg")!

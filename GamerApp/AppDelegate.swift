@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow()
         let navController = UINavigationController(rootViewController: HomeViewController())
+        navController.navigationBar.tintColor = .white
+        navController.navigationBar.barTintColor = Colors.background
+        navController.navigationBar.barStyle = .blackTranslucent
+        navController.navigationBar.prefersLargeTitles = true
+
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
         return true

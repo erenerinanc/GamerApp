@@ -18,6 +18,8 @@ final class HomeViewController: UIViewController {
     var router: (HomeRoutingLogic & HomeDataPassing)?
     var viewModel: Home.Fetch.ViewModel?
     
+    lazy var searchController = UISearchController(searchResultsController: SearchResultsViewController())
+    var currentSearchText: String = ""
     fileprivate lazy var tableView = UITableView()
     private lazy var featuredGameCell = FeaturedGameCell()
     
@@ -55,16 +57,30 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutUI()
+        configureSearchController()
         //1
         interactor?.fetchGameslist(request: Home.Fetch.Request(path: APIRequest.getGames().path, params: APIRequest.getGames().parameters))
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.sizeToFit()
     }
     
     private func layoutUI() {
+        navigationItem.title = "Library"
         view.addSubview(tableView)
-        tableView.backgroundColor = .white
+        tableView.indicatorStyle = .white
+        tableView.backgroundColor = Colors.background
         tableView.snp.makeConstraints { $0.directionalEdges.equalToSuperview() }
         tableView.register(TableViewGameCell.self, forCellReuseIdentifier: TableViewGameCell.reuseID)
+    }
+    
+    private func configureSearchController() {
+        searchController.searchResultsUpdater = searchController.searchResultsController as? UISearchResultsUpdating
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search for games"
+        navigationItem.searchController = searchController
     }
 }
 
@@ -77,9 +93,9 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return CGFloat(280)
+            return CGFloat(250 + 16)
         } else {
-            return CGFloat(80)
+            return CGFloat(86)
         }
     }
     
@@ -108,11 +124,30 @@ extension HomeViewController: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let headerLabel = UILabel()
+        headerLabel.backgroundColor = Colors.background.withAlphaComponent(0.6)
         if section == 0 {
-            return "Featured Games"
+            headerLabel.text = "Featured Games"
         } else {
-            return "Games"
+            headerLabel.text = "Games"
+        }
+        headerLabel.textColor = .white
+        headerLabel.font = UIFont.preferredFont(forTextStyle: .title2)
+        headerView.addSubview(headerLabel)
+        headerLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(headerView.layoutMarginsGuide)
+            make.top.equalToSuperview().offset(16)
+            make.bottom.equalToSuperview().inset(8)
+        }
+        headerView.backgroundColor = Colors.background
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            router?.routeToDetails(index: indexPath.row)
         }
     }
 
@@ -121,9 +156,6 @@ extension HomeViewController: UITableViewDataSource {
 //MARK: - CollectionView Delegate & DataSource
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.frame.width/1.8, height: collectionView.frame.height/1.5)
-//    }
 }
 
 extension HomeViewController: UICollectionViewDataSource {

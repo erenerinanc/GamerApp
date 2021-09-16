@@ -52,7 +52,7 @@ final class DetailsViewController: UIViewController {
         super.viewDidLoad()
         layoutUI()
         //1
-        
+//        interactor?.fetchGameDetails(request: <#T##Details.Fetch.Request#>)
     }
     
     //MARK: Configure UI

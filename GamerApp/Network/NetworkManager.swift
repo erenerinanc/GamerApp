@@ -60,10 +60,8 @@ class NetworkManager {
                 if let response = response as? HTTPURLResponse, response.statusCode == 200 {
                     do {
                         let decoder = JSONDecoder()
-//                        decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let apiResponse = try decoder.decode(model.self, from: data)
                         completion(.success(apiResponse))
-                        print(apiResponse)
                     }
                     catch {
                         completion(.failure(.invalidData))

@@ -29,24 +29,31 @@ class TableViewGameCell: UITableViewCell {
         contentView.addSubview(gameImageView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(descriptionLabel)
+        contentView.backgroundColor = Colors.background
         
+        gameImageView.contentMode = .scaleAspectFill
         gameImageView.layer.cornerRadius = CGFloat(10)
         gameImageView.clipsToBounds = true
         nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        nameLabel.textColor = .white
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        descriptionLabel.textColor = Colors.secondaryLabel
         
         gameImageView.snp.makeConstraints { make in
-            make.leading.top.equalToSuperview().offset(4)
-            make.width.height.equalTo(70)
+            make.leading.top.bottom.equalToSuperview().inset(8)
+            make.width.equalTo(70)
+            make.height.equalTo(gameImageView.snp.width)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(gameImageView.snp.trailing).offset(8)
+            make.trailing.lessThanOrEqualToSuperview().inset(8)
             make.top.equalToSuperview().offset(8)
         }
         
         descriptionLabel.snp.makeConstraints { make in
             make.leading.equalTo(gameImageView.snp.trailing).offset(8)
+            make.trailing.lessThanOrEqualToSuperview().inset(8)
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
         }
     }

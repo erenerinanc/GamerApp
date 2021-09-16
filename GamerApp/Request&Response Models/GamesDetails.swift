@@ -3,8 +3,7 @@ import Foundation
 
 extension APIRequest {
     static func getGameDetails() -> APIRequest{
-        #warning("The value of gameID should change each time user tap on a cell.")
-        return APIRequest(path: "/games", parameters: ["game_pk": "3328"])
+        return APIRequest(path: "/games", parameters: ["game_pk": "gameID"])
     }
 }
 

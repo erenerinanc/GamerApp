@@ -14,7 +14,7 @@ class FeaturedGameCell: UITableViewCell {
     lazy var layout = UICollectionViewFlowLayout().configure {
         $0.itemSize = CGSize(width: 220, height: 250)
         $0.scrollDirection = .horizontal
-        $0.minimumInteritemSpacing = 16
+        $0.minimumLineSpacing = 16
     }
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -30,7 +30,8 @@ class FeaturedGameCell: UITableViewCell {
     
     private func layoutUI() {
         contentView.addSubview(collectionView)
-        collectionView.backgroundColor = .white
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = Colors.background
         collectionView.snp.makeConstraints {
             $0.directionalEdges.equalToSuperview()
         }
