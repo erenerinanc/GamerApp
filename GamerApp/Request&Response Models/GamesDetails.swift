@@ -2,8 +2,8 @@
 import Foundation
 
 extension APIRequest {
-    static func getGameDetails() -> APIRequest{
-        return APIRequest(path: "/games", parameters: ["game_pk": "gameID"])
+    static func getGameDetails(id: String) -> APIRequest{
+        return APIRequest(path: "/games", parameters: ["game_pk": id])
     }
 }
 
@@ -79,7 +79,7 @@ struct Genre: Codable {
     let gamesCount: Int?
     let imageBackground: String?
     let domain: Domain?
-    let language: Language?
+    let language: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name, slug
@@ -99,10 +99,6 @@ enum Domain: String, Codable {
     case playGoogleCOM = "play.google.com"
     case storePlaystationCOM = "store.playstation.com"
     case storeSteampoweredCOM = "store.steampowered.com"
-}
-
-enum Language: String, Codable {
-    case eng = "eng"
 }
 
 // MARK: - ParentPlatform

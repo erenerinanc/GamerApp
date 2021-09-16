@@ -9,13 +9,13 @@ import Foundation
 
 
 protocol HomeWorkingLogic: AnyObject {
-    func getGamesLists(request: Home.Fetch.Request,_ completion: @escaping ((Result<GamesList, Error>) -> Void))
+    func getGamesLists(_ completion: @escaping ((Result<GamesList, Error>) -> Void))
 }
 
 final class HomeWorker: HomeWorkingLogic {
-    func getGamesLists(request: Home.Fetch.Request,_ completion: @escaping ((Result<GamesList, Error>) -> Void)) {
+    func getGamesLists(_ completion: @escaping ((Result<GamesList, Error>) -> Void)) {
         //3
-        NetworkManager.shared.fetch(request: APIRequest(path: request.path, parameters: request.params), model: GamesList.self) { result in
+        NetworkManager.shared.fetch(request: APIRequest.getGames(), model: GamesList.self) { result in
             switch result {
             case .success(let response):
                 completion(.success(response))

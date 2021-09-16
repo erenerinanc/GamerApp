@@ -59,7 +59,7 @@ final class HomeViewController: UIViewController {
         layoutUI()
         configureSearchController()
         //1
-        interactor?.fetchGameslist(request: Home.Fetch.Request(path: APIRequest.getGames().path, params: APIRequest.getGames().parameters))
+        interactor?.fetchGameslist()
     }
     
     override func viewDidAppear(_ animated: Bool) {

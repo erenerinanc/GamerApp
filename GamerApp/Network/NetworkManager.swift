@@ -62,9 +62,10 @@ class NetworkManager {
                         let decoder = JSONDecoder()
                         let apiResponse = try decoder.decode(model.self, from: data)
                         completion(.success(apiResponse))
-                    }
-                    catch {
+                    } catch {
+                        let error = error
                         completion(.failure(.invalidData))
+                        print("Error:", error.localizedDescription)
                         print(CustomError.invalidData)
                     }
                 } else {

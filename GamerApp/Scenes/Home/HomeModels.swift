@@ -13,8 +13,6 @@ enum Home {
     enum Fetch {
         
         struct Request {
-            let path: String
-            let params: [String:String]
         }
         
         struct Response {

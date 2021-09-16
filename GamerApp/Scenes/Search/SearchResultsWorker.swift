@@ -13,7 +13,7 @@ protocol SearchResultsWorkingLogic: AnyObject {
 
 final class SearchResultsWorker: SearchResultsWorkingLogic {
     func getSearchedGamesList(request: SearchResults.Fetch.Request, _ completion: @escaping (Result<GamesList, Error>) -> Void) {
-        NetworkManager.shared.fetch(request: APIRequest(path: request.path, parameters: request.params), model: GamesList.self) { result in
+        NetworkManager.shared.fetch(request: APIRequest.searchGames(by: request.searchQuery), model: GamesList.self) { result in
             switch result {
             case .success(let response):
                 completion(.success(response))

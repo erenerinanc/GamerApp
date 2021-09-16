@@ -13,9 +13,7 @@ enum SearchResults {
     enum Fetch {
         
         struct Request {
-            let path: String
-            let params: [String:String]
-//            let query: String
+            let searchQuery: String
         }
         
         struct Response {
@@ -23,9 +21,9 @@ enum SearchResults {
         }
         
         struct ViewModel {
-            let searchedGames: [SearchResults.Fetch.ViewModel.Games]
+            let searchedGames: [SearchResults.Fetch.ViewModel.Game]
             
-            struct Games {
+            struct Game {
                 var name: String
                 var releasedDate: String
                 var rating: Double
