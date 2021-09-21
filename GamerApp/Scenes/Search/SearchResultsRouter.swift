@@ -11,7 +11,7 @@ protocol SearchResultsRoutingLogic: AnyObject {
     
 }
 
-protocol SearchResultsDataPassing: class {
+protocol SearchResultsDataPassing: AnyObject {
     var dataStore: SearchResultsDataStore? { get }
 }
 

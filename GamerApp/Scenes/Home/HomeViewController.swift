@@ -99,9 +99,9 @@ extension HomeViewController: UITableViewDelegate {
         }
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        router?.routeToDetails(index: indexPath.row)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.routeToGameDetails(index: indexPath.item)
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -144,12 +144,6 @@ extension HomeViewController: UITableViewDataSource {
         headerView.backgroundColor = Colors.background
         return headerView
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
-            router?.routeToDetails(index: indexPath.row)
-        }
-    }
 
 }
 
@@ -171,7 +165,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        router?.routeToDetails(index: indexPath.item)
+        router?.routeToFeaturedGameDetails(index: indexPath.row)
     }
 }
 

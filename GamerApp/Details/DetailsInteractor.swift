@@ -12,17 +12,25 @@ protocol DetailsBusinessLogic: AnyObject {
 }
 
 protocol DetailsDataStore: AnyObject {
-    var gameDetail: GameResponse? { get set }
+    var gameDetail: GameDetails? { get set }
 }
 
 final class DetailsInteractor: DetailsBusinessLogic, DetailsDataStore {
-    
+
     var presenter: DetailsPresentationLogic?
     var worker: DetailsWorkingLogic = DetailsWorker()
-    var gameDetail: GameResponse?
+    var gameDetail: GameDetails?
     
     func fetchGameDetails(request: Details.Fetch.Request) {
-        //2
-        
-    }
+        worker.getGameDetails(request: request) { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.gameDetail = response
+                self?.presenter?.presentGameDetail(response: Details.Fetch.Response(gameDetail: response))
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+
+    }    
 }

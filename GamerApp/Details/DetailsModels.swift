@@ -13,11 +13,11 @@ enum Details {
     enum Fetch {
         
         struct Request {
-            var params: [Int:String]
+            var gameId: Int
         }
         
         struct Response {
-            var gameDetail: GameResponse
+            var gameDetail: GameDetails
         }
         
         struct ViewModel {
@@ -27,7 +27,7 @@ enum Details {
                 var id: Int
                 var description: String
                 var name: String
-                var imageURL: String
+                var imageURL: URL
             }
         }
         

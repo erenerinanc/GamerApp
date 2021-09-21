@@ -32,6 +32,7 @@ final class HomeInteractor: HomeBusinessLogic, HomeDataStore {
             switch result {
             case .success(let response):
                 guard let gamesList = response.results else { return }
+                self.gamesList = gamesList
                 self.presenter?.presentGames(response: Home.Fetch.Response(gamesList: gamesList))
             case .failure(let error):
                 print("Error is:", error)
